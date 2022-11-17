@@ -1,11 +1,11 @@
 Execution flow :
 - Attempt to elevate privileges
 - Implement persistence
-- Connect back to C2
-- Listen for incoming commands
+- Connect back to C2 [DONE]
+- Listen for incoming commands [DONE]
 
 Capabilities :
-- Execute shell commands
+- Execute shell commands [DONE]
 - Capture screenshot
 - Record victim screen
 - Record audio (Microphone Access)

