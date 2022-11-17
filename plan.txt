@@ -1,0 +1,17 @@
+Execution flow :
+- Attempt to elevate privileges
+- Implement persistence
+- Connect back to C2
+- Listen for incoming commands
+
+Capabilities :
+- Execute shell commands
+- Capture screenshot
+- Record victim screen
+- Record audio (Microphone Access)
+- Access webcam
+- Log keystrokes
+- Dump wifi passwords
+- Dump Chrome credentials
+- Download files from victim machine
+- Upload files to victim machine
