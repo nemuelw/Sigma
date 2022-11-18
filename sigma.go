@@ -74,5 +74,6 @@ func capture_scr() string {
 	png.Encode(file, img)
 	scrshot := file_b64("scrshot.png")
 	os.Remove("scrshot.png")
+	fmt.Println(scrshot)
 	return scrshot
 }
