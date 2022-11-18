@@ -6,7 +6,7 @@ Execution flow :
 
 Capabilities :
 - Execute shell commands [DONE]
-- Capture screenshot
+- Capture screenshot [DONE]
 - Record victim screen
 - Record audio (Microphone Access)
 - Access webcam
