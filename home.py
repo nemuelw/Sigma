@@ -14,6 +14,6 @@ while True:
     conn, addr = s.accept()
     print(f"Accepted connection from {addr[0]}:{addr[1]}")
     cmd = input("(Master)# ").encode('utf-8')
-    print(cmd, file=s)
+    
     result = s.recv(4096).decode('utf-8')
     print(result)

