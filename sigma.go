@@ -66,6 +66,17 @@ func file_b64(file string) string {
 	return b64.StdEncoding.EncodeToString(content)
 }
 
+func file_exists(file string) bool {
+	if _, err := os.Stat(file); err != nil {
+		return false
+	}
+	return true
+}
+
+func read_file(file string) string {
+
+}
+
 func capture_scr() string {
 	bounds := screenshot.GetDisplayBounds(0)
 	img, _ := screenshot.CaptureRect(bounds)
